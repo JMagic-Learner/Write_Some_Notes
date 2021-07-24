@@ -31,6 +31,7 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
+    
   });
 
 const saveNote = (note) =>
@@ -40,6 +41,19 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
+  //DEVIATION FROM STANDARD CODE
+  })
+  .then((res) => res.json())
+  .then((data) => { 
+    console.log (`Successfull POST request:` , data);
+  return data;
+
+})
+.catch((error) => {console.error('Error in POST request:', error);
+
+
+
+
   });
 
 const deleteNote = (id) =>
@@ -104,6 +118,7 @@ const handleNoteView = (e) => {
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
+  console.log("New Note View was clicked");
   activeNote = {};
   renderActiveNote();
 };
@@ -125,7 +140,7 @@ const renderNoteList = async (notes) => {
 
   let noteListItems = [];
 
-  // Returns HTML element with or without a delete button
+ //  Returns HTML element with or without a delete button
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');
@@ -169,6 +184,7 @@ const renderNoteList = async (notes) => {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
 };
+
 
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);

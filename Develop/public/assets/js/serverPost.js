@@ -154,8 +154,9 @@ const renderNoteList = async (notes) => {
 		liEl.addEventListener('click', handleNoteView);
 
 		const spanEl = document.createElement('span');
+		
 		spanEl.innerText = text;
-		// spanEl.addEventListener('click', handleNoteView);
+		spanEl.addEventListener('click', handleNoteView);
 
 		liEl.append(spanEl);
 

@@ -19,7 +19,14 @@ app.get('/api/notes.html', (req, res) => {
     const readNotes = fs.readFileSync('./db/db.json');
     const conversionNotes = JSON.parse(readNotes);
     console.log("This is the output from app.get");
+    console.log(conversionNotes);
+    
     res.json(conversionNotes);
+
+    if (req.method = "GET") {
+        console.log("you have recieved a get repsonse")
+        
+    }
 });
 
 
@@ -47,6 +54,7 @@ app.post('/api/notes.html', (req, res) => {
                 const parsedNotes = JSON.parse(data);
                 console.log("parsedNotes output");
                 parsedNotes.push(NewNote);
+                console.log(parsedNotes);
                 
                 fs.writeFile('./db/db.json', JSON.stringify(parsedNotes), (writeErr) =>
                     writeErr
@@ -58,7 +66,7 @@ app.post('/api/notes.html', (req, res) => {
             }
         });
     }
-  
+
     res.json(NewNote);
    
 
